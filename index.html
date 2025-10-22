@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuildToLearn | Learn by Building</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Full-page background image with overlay */
+body {
+  margin: 0;
+  background: url('https://plus.unsplash.com/premium_photo-1663076367860-3cde6cedaf66?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bGFwdG9wJTIwaW4lMjBuYXR1cmV8ZW58MHx8MHx8fDA%3D&fm=jpg&q=60&w=3000') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  line-height: 1.6;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+/* Hero Section (middle) */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 60vh; /* reduced from 80vh */
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 650px;
+  margin-bottom: 30px;
+}
+
+/* Buttons below hero */
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons a {
+  padding: 14px 32px;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn-contact { background: #16a34a; }
+.btn-demo { background: #f59e0b; }
+.btn-signup { background: #3b82f6; }
+
+.hero-buttons a:hover { opacity: 0.85; }
+
+/* Container sections */
+.container {
+  max-width: 1100px;
+  margin: 40px auto; /* reduced from 60px */
+  padding: 0 20px;
+}
+
+section {
+  margin-bottom: 70px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure no extra margin above problem */
+#problem {
+  margin-top: 0;
+}
+
+/* Section titles */
+h2 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 1.9rem;
+  text-align: center;
+}
+
+p {
+  font-size: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
+/* Cards */
+.features, .benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  color: #fff;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+/* Modal Sign Up Form */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background-color: #f5f5f5;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  position: relative;
+  color: #333;
+}
+
+.modal-content h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 30px;
+  background: #3b82f6;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-content button:hover { background: #2563eb; }
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background: rgba(0, 0, 0, 0.85);
+  color: #ccc;
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 1rem;
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<div class="hero">
+  <h1>BuildToLearn</h1>
+  <p>Hands-on coding & real-world projects — 80% free! Learn by building, not by memorizing.</p>
+  <div class="hero-buttons">
+    <a href="mailto:buildtolearn@gmail.com?subject=Contact" class="btn-contact">Contact</a>
+    <a href="https://example.com/demo" class="btn-demo" target="_blank">Demo</a>
+    <a class="btn-signup" id="signupBtn">Sign Up Free</a>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Problem Section -->
+  <section id="problem">
+    <h2>The Problem</h2>
+    <p>Thousands of students graduate every year, yet most lack practical coding experience and real project exposure. Traditional learning is too theoretical.</p>
+  </section>
+
+  <!-- Solution Section -->
+  <section id="solution">
+    <h2>Our Solution</h2>
+    <div class="features">
+      <div class="card">
+        <h3>💻 Coding Challenges</h3>
+        <p>Learn by solving real-world coding tasks with instant feedback and solutions.</p>
+      </div>
+      <div class="card">
+        <h3>🤖 AI Mentor</h3>
+        <p>Personalized guidance from our AI mentor to help you stay on track.</p>
+      </div>
+      <div class="card">
+        <h3>🌐 Open Source Projects</h3>
+        <p>Contribute to GitHub repositories and build a visible portfolio for employers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section id="benefits">
+    <h2>Benefits of BuildToLearn</h2>
+    <div class="benefits">
+      <div class="card">
+        <h3>🚀 Functional</h3>
+        <p>Gain job-ready technical skills through guided, hands-on experience.</p>
+      </div>
+      <div class="card">
+        <h3>💡 Emotional</h3>
+        <p>Boost your confidence by seeing your work come alive as real projects.</p>
+      </div>
+      <div class="card">
+        <h3>🌍 Social</h3>
+        <p>Join a global community of learners and mentors who collaborate to grow together.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Sign Up Modal -->
+<div id="signupModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <h3>Create Your Account</h3>
+    <form>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="Enter your phone" required>
+      <label for="otp">OTP</label>
+      <input type="text" id="otp" placeholder="Enter OTP">
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+<!-- Footer with Quote -->
+<footer>
+  "Empowering students to learn by building real-world projects." – BuildToLearn
+</footer>
+
+<script>
+// Modal functionality
+const modal = document.getElementById("signupModal");
+const btn = document.getElementById("signupBtn");
+const span = document.getElementById("closeModal");
+
+btn.onclick = () => { modal.style.display = "block"; }
+span.onclick = () => { modal.style.display = "none"; }
+window.onclick = (event) => { if(event.target == modal){ modal.style.display = "none"; } }
+</script>
+
+</body>
+</html>
